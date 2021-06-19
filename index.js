@@ -1,63 +1,43 @@
-var mysql = require("mysql");
-var express = require("express");
-var session = require("express-session");
-var path = require("path");
-let multer = require("multer");
+import './configs/env.config.js';
+import './configs/db.config.js';
+import express from 'express';
+import session from 'express-session';
+import cookieParser from 'cookie-parser';
+import { signIn, postSignIn, getProducts, addToCart, getCart } from './controllers';
+import { cartMiddleware } from './middlewares';
 
-var connection = mysql.createConnection({
-	host: "localhost",
-	user: "root",
-	password: "Anbo2004trung",
-	database: "mydb",
-});
+const app = express();
 
-var app = express();
 app.use(
-	session({
-		secret: "secret",
-		resave: true,
-		saveUninitialized: true,
-	})
+    session({
+        secret: 'secret',
+        resave: true,
+        saveUninitialized: true,
+    })
 );
-app.use(multer().array());
+
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.set("views", path.join(__dirname, "views"));
-app.use(express.static(__dirname + "/views"));
-app.set("view engine", "pug");
+app.set('views', './views');
+app.use('/', express.static('./public'));
+app.use('/styles', express.static('./views/styles'));
+app.set('view engine', 'pug');
 
-app.get("/", function (req, res) {
-	res.render("login");
+app.use(cartMiddleware);
+// Auth route
+app.get('/auth', signIn);
+app.post('/auth', postSignIn);
+
+// Products route
+app.get('/', getProducts);
+app.get('/addToCart', addToCart);
+
+// Cart route
+app.get('/cart', getCart)
+
+const PORT = process.env.PORT || 1402;
+app.listen(PORT, () => {
+    console.log(`Server starting on port ${PORT}`);
 });
-
-app.post("/auth", function (req, res) {
-	console.log(req);
-	var username = req.body.username;
-	var password = req.body.password;
-	if (username && password) {
-		connection.query(
-			"SELECT * FROM user WHERE username = ? AND password = ?",
-			[username, password],
-			function (error, results, fields) {
-				if (results.length > 0) {
-					req.session.loggedin = true;
-					req.session.username = username;
-					res.redirect("/home");
-				} else {
-					res.send("Incorrect Username and/or Password!");
-				}
-				res.end();
-			}
-		);
-	} else {
-		res.send("Please enter Username and Password!");
-		res.end();
-	}
-});
-
-app.get("/home", function (req, res) {
-	res.render("home");
-});
-
-app.listen(1103);

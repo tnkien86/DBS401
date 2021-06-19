@@ -1,0 +1,40 @@
+body {
+	font-family: 'Roboto', sans-serif;
+	background-color: #ffffff;
+}
+
+.navbar {
+	height: 72px;
+	transition: all 0.3s ease;
+}
+
+.bg-onscroll {
+	box-shadow: 0 1px 8px 16px rgba(0, 0, 0, 0.03);
+	background-color: #ffffff;
+}
+
+.cart {
+	position: relative;
+	padding: 2px;
+	float: right;
+}
+
+.cart i {
+	font-size: 28px;
+}
+
+.cart-count {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 2px;
+	color: #ffffff;
+	background-color: tomato;
+	border-radius: 50%;
+	width: 18px;
+    height: 18px;
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,33 @@
+.header {
+    height: 100vh;
+    background-image: url('/images/cart.jpg');
+    background-size: contain;
+    overflow: hidden;
+}
+
+.wrapper {
+    padding-top: 112px;
+}
+
+.summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 56px 32px;
+    box-shadow: 1px 1px 16px 8px rgba(0, 0, 0, 0.03);
+    width: 336px;
+    border-radius: 8px;
+}
+
+.summary > h3 {
+    font-size: 64px;
+}
+
+.summary > span {
+    font-size: 24px;
+}
+
+.container.my-5.pt-5 {
+    display: none;
+}

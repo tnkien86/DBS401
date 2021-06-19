@@ -1,0 +1,33 @@
+.header {
+    height: 100vh;
+    background-image: url('/images/header.jpg');
+    background-size: cover;
+    background-position: center right;
+}
+
+.header-text > * {
+    max-width: 656px;
+    color: #ffffff;
+}
+
+.header-text h1 {
+    font-size: 88px;
+}
+
+.cover {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.card {
+    box-shadow: 1px 1px 16px 8px rgba(0, 0, 0, 0.03);
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card-body {
+    height: 100%;
+}
+
