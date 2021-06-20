@@ -1,0 +1,31 @@
+extend ./layout/common
+
+block head
+	link(rel='stylesheet' href="/styles/products.css")
+	<title>Cat Lovers</title>
+block header 
+	.container-fluid.header.d-flex.align-items-center.justify-content-start 
+		.container.header-text 
+			h1.text-white.header-text.mb-4 Find your boss...
+			p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+block content
+	.row.g-5
+		each product in products
+			.col-md-6
+				.card
+					.row.g-0
+						.col-md-4
+							img.cover(src='http://placekitten.com/200/250' alt='product image')
+						.col-md-8 
+							.card-body.d-flex.flex-column 
+								h5.card-title=product.name 
+								p.card-text=product.description 
+								p.card-text
+									small.text-muted
+										i.bi.bi-geo-alt
+										span.mx-2=product.location
+								p.card-text.d-flex.justify-content-between.align-items-end.flex-grow-1
+									span=product.price 
+									a.btn.btn-primary(href=`/addToCart?id=${product.id}`) Get Boss
+	script
+		include ./scripts/header.js
