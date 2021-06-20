@@ -8,7 +8,6 @@ const header = document.querySelector('.header');
 const navbar = document.querySelector('.navbar')
 
 let observer = new IntersectionObserver(() => {
-    console.log('a')
     navbar.classList.toggle('bg-onscroll')
 }, options);
 

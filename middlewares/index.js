@@ -1,1 +1,1 @@
-export * from './cart.middleware';
+export * from './user.middleware';

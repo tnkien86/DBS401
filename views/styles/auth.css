@@ -1,0 +1,9 @@
+.auth {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.welcome {
+    background-image: url('/images/auth.jpg');
+    background-size: cover;
+}
