@@ -7,9 +7,9 @@ export const getCart = (req, res) => {
         return price.substring(1);
     }).join('+');
     const total = eval(prices) || 0;
-
+    
     res.render('../views/cart', {
-        total,
-        amount: prices.length
+        total: total.toFixed(2),
+        amount: Object.values(cart).length
     })
 };
