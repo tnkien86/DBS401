@@ -3,10 +3,9 @@ html(lang="en")
 		link(rel="icon" href="https://cdn.glitch.com/e7a1f406-0e23-4b21-86ce-3f3967002e2b%2Fimage.png?v=1589043333029" type="image/gif" size="64x64")
 		link(rel="preconnect" href="https://fonts.gstatic.com")
 		link(href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet")
-		link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet")
-		link(rel='stylesheet' href="/styles/global.css")
-		script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js")
+		link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous")
 		link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css")
+		link(rel='stylesheet' href="/styles/global.css")
 		block head
 	body
 		nav.navbar.navbar-expand-lg.navbar-light.fixed-top.bg-onscroll
@@ -15,11 +14,33 @@ html(lang="en")
 					img.h-100.me-2(src='https://cdn.glitch.com/e7a1f406-0e23-4b21-86ce-3f3967002e2b%2Fimage.png?v=1589043333029' alt='logo')
 					b Cat Lovers
 				ul.navbar-nav
+					li.nav-item.d-flex.align-items-center
+						a.nav-link.cart.me-4(href='/cart') 
+							i.bi.bi-cart4
+							span.cart-count=cart
+					if(user)
+						li.nav-item.h-100
+							.btn-group
+								.dropdown-toggle(data-bs-toggle="dropdown" aria-expanded="false")
+									img.avatar(src='https://i.pravatar.cc/100' alt=user.username data-bs-toggle='tooltip' data-bs-placement='bottom' title=user.username)
+								ul.dropdown-menu.mt-2.account-menu
+									li
+										a.dropdown-item(href="#") 
+											span Hi,&nbsp; 
+											b=user.username
+									li
+										hr.dropdown-divider
+									li
+										a.dropdown-item(href='/logout') 
+											span.me-2 Log Out
+											i.bi.bi-box-arrow-in-right
+							
+					else 
 						li.nav-item
-							a.nav-link.cart(href='/cart') 
-								i.bi.bi-cart4
-								span.cart-count=cart
-					
+							a.nav-link.cart(href='/auth') 
+								.btn.btn-primary Log In
+
 		block header
 		.container.my-5.pt-5
 			block content
+		script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous")

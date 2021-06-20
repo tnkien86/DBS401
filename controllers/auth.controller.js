@@ -12,20 +12,27 @@ export const postSignIn = async (req, res) => {
         const hashPassword = md5(password);
 
         if (!user || hashPassword !== user.password) {
-            return res.render('../view/auth', {
+            return res.render('../views/auth', {
                 values: req.body,
                 error: 'Wrong username or password',
             });
         }
+        
+        user.password = null;
 
         req.session.loggedin = true;
-        req.session.username = username;
+        req.session.user = user;
         res.redirect('/');
     } catch (error) {
         console.log(error);
-        res.render('../view/auth', {
+        res.render('../views/auth', {
             values: req.body,
             error: 'Something went wrong :(',
         });
     }
 };
+
+export const logOut = (req, res) => {
+    req.session.destroy();
+    res.redirect('/')
+}
