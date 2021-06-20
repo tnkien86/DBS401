@@ -16,7 +16,8 @@
     align-items: center;
     padding: 56px 32px;
     box-shadow: 1px 1px 16px 8px rgba(0, 0, 0, 0.03);
-    width: 336px;
+    min-width: 336px;
+    width: fit-content;
     border-radius: 8px;
 }
 
