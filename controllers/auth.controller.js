@@ -1,5 +1,5 @@
 import md5 from 'md5';
-import User from '../models/User.model.js';
+import User from '../models/user.model.js';
 
 export const signIn = (_, res) => {
     res.render('../views/auth');
