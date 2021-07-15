@@ -48,3 +48,7 @@ body {
 	border: none;
 	box-shadow: 0 1px 16px 24px rgba(0, 0, 0, 0.04);
 }
+
+.logo {
+	height: 56px;
+}
